@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDate (Untiliy)
 
++ (NSString *)xyb_dateToStr:(NSString *) dateTime formatter:(NSString *)formatter;
 
 @end
 
