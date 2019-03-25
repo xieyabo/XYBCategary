@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*
  身份证验证
  */
-- (BOOL)stringAccurateVerifyIDCardNumber:(NSString *)value;
+- (BOOL)stringAccurateVerifyIDCardNumber;
 
 /*
  手机号验证
@@ -47,7 +47,13 @@ NS_ASSUME_NONNULL_BEGIN
 /*
  银行号验证
  */
-- (BOOL)stringCheckBankCardNo:(NSString*) cardNo;
+- (BOOL)stringCheckBankCardNo;
+
+/*
+ 车牌
+ */
+
+- (BOOL)stringIsCarNum;
 
 /*
  md5加密

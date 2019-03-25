@@ -9,22 +9,22 @@
 #import "UIButton+XYBBtnClick.h"
 static const void *asssociateKey = @"xybbtnclickasssociateKey";
 @implementation UIButton (XYBBtnClick)
-- (void) setClick:(click)click
+
+- (void)btnAddAction:(void(^)(void))click
 {
-    objc_setAssociatedObject(self, asssociateKey, click, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [self removeTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
-    if (click) {
-        [self addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
+    void(^action)(void) = objc_getAssociatedObject(self, asssociateKey);
+    if (action==nil) {
+        objc_setAssociatedObject(self, asssociateKey, click, OBJC_ASSOCIATION_RETAIN);
+        [self addTarget:self action:@selector(btnAddClick) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
-- (click)click
+- (void)btnAddClick
 {
-    return objc_getAssociatedObject(self, asssociateKey);
-}
--(void)buttonClick{
-    if (self.click) {
-        self.click();
+    void(^action)(void) = objc_getAssociatedObject(self, asssociateKey);
+    if (action) {
+        action();
     }
 }
+
 @end

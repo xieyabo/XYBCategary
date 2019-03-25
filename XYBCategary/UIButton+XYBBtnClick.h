@@ -9,12 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 
-typedef void(^click)(void);
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButton (XYBBtnClick)
 
-@property (nonatomic , copy)click click;
+- (void)btnAddAction:(void(^)(void))click;
 
 @end
 
