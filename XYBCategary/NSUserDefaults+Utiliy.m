@@ -16,9 +16,16 @@
     [self removeObjectForKey:key];
     
     NSUserDefaults *userDefault = [self standardUserDefaults];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object requiringSecureCoding:YES error:nil];
-    [userDefault setObject:data
-                    forKey:key];
+    if (@available(iOS 11.0, *)) {
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object requiringSecureCoding:YES error:nil];
+        [userDefault setObject:data
+                        forKey:key];
+    }else{
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object];
+        [userDefault setObject:data
+                        forKey:key];
+    }
+    
     [userDefault synchronize];
 }
 

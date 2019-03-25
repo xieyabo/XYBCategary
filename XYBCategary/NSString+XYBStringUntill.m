@@ -13,10 +13,10 @@
  字符串是否只包含数字或者字母
  */
 
-- (BOOL)stringContainFigureOrWorld
++ (BOOL)stringContainFigureOrWorld:(NSString *)psd
 {
     NSString *regex2 = @"^[0-9A-Za-z]{6,16}$";
-    return [self isValidateByRegex:regex2];
+    return [psd isValidateByRegex:regex2];
 }
 
 /*
@@ -24,27 +24,27 @@
  length验证码长度，（一般4到6位）
  */
 
-- (BOOL)stringIsVerifyCodeWithLength:(int)length
++ (BOOL)stringIsVerifyCodeWithLength:(int)length withVerify:(NSString *)verify
 {
     NSString *regex2 = [NSString stringWithFormat:@"^[0-9]{0,%d}$",length];
-    return [self isValidateByRegex:regex2];
+    return [verify isValidateByRegex:regex2];
 }
 
 /*
  验证邮箱
  */
-- (BOOL)stringIsEmailAddress
++ (BOOL)stringIsEmailAddress:(NSString *)emailStr
 {
     NSString *emailRegex = @"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    return [self isValidateByRegex:emailRegex];
+    return [emailStr isValidateByRegex:emailRegex];
 }
 
 /*
  身份证验证
  */
-- (BOOL)stringAccurateVerifyIDCardNumber
++ (BOOL)stringAccurateVerifyIDCardNumber:(NSString *)idCarNum
 {
-    NSString *value = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *value = [idCarNum stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     int length =0;
     if (!value) {
         return NO;
@@ -117,9 +117,9 @@
  手机号验证
  */
 
-- (BOOL)stringIsMobileNumber
++ (BOOL)stringIsMobileNumber:(NSString *)phoneNum
 {
-    if (self.length != 11)
+    if (phoneNum.length != 11)
     {
         return NO;
     }
@@ -168,7 +168,7 @@
      */
     NSString *CT = @"^1\\d{10}$";
     NSPredicate *regextestct = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CT];
-    if ([regextestct evaluateWithObject:self]) {
+    if ([regextestct evaluateWithObject:phoneNum]) {
         return YES;
     }else{
         return NO;
@@ -178,15 +178,15 @@
 /*
  银行号验证
  */
-- (BOOL)stringCheckBankCardNo
++ (BOOL)stringCheckBankCardNo:(NSString *)bankCardNum
 {
     int oddsum = 0;    //奇数求和
     int evensum = 0;    //偶数求和
     int allsum = 0;
-    int cardNoLength = (int)[self length];
-    int lastNum = [[self substringFromIndex:cardNoLength-1] intValue];
+    int cardNoLength = (int)[bankCardNum length];
+    int lastNum = [[bankCardNum substringFromIndex:cardNoLength-1] intValue];
     
-    NSString *cardNo = [self substringToIndex:cardNoLength -1];
+    NSString *cardNo = [bankCardNum substringToIndex:cardNoLength -1];
     for (int i = cardNoLength -1 ; i>=1;i--) {
         NSString *tmpString = [cardNo substringWithRange:NSMakeRange(i-1,1)];
         int tmpVal = [tmpString intValue];
@@ -230,9 +230,9 @@
  md5加密
  */
 
-- (NSString *) md5
++ (NSString *) md5WithStr:(NSString *)str
 {
-    const char *cStr = [self UTF8String];
+    const char *cStr = [str UTF8String];
     unsigned char digest[CC_MD5_DIGEST_LENGTH];
     CC_MD5( cStr, strlen(cStr), digest ); // This is the md5 call
     
@@ -244,20 +244,20 @@
     return  output;
 }
 
-- (BOOL)stringIsCarNum
++ (BOOL)stringIsCarNumWith:(NSString *)carNum
 {
-    if (self.length==7) {
+    if (carNum.length==7) {
         //普通汽车，7位字符，不包含I和O，避免与数字1和0混淆
         NSString *carRegex = @"^[\u4e00-\u9fa5]{1}[a-hj-np-zA-HJ-NP-Z]{1}[a-hj-np-zA-HJ-NP-Z0-9]{4}[a-hj-np-zA-HJ-NP-Z0-9\u4e00-\u9fa5]$";
         NSPredicate *carTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",carRegex];
-        return [carTest evaluateWithObject:self];
-    }else if(self.length==8){
+        return [carTest evaluateWithObject:carNum];
+    }else if(carNum.length==8){
         //新能源车,8位字符，第一位：省份简称（1位汉字），第二位：发牌机关代号（1位字母）;
         //小型车，第三位：只能用字母D或字母F，第四位：字母或者数字，后四位：必须使用数字;([DF][A-HJ-NP-Z0-9][0-9]{4})
         //大型车3-7位：必须使用数字，后一位：只能用字母D或字母F。([0-9]{5}[DF])
         NSString *carRegex = @"^[\u4e00-\u9fa5]{1}[a-hj-np-zA-HJ-NP-Z]{1}([0-9]{5}[d|f|D|F]|[d|f|D|F][a-hj-np-zA-HJ-NP-Z0-9][0-9]{4})$";
         NSPredicate *carTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",carRegex];
-        return [carTest evaluateWithObject:self];
+        return [carTest evaluateWithObject:carNum];
     }
     return NO;
 }

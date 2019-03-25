@@ -16,50 +16,49 @@ NS_ASSUME_NONNULL_BEGIN
  字符串长度6-16位
  */
 
-- (BOOL)stringContainFigureOrWorld;
-
++ (BOOL)stringContainFigureOrWorld:(NSString *)psd;
 
 /*
  验证码
  length验证码长度，（一般4到6位）
  */
 
-- (BOOL)stringIsVerifyCodeWithLength:(int)length;
++ (BOOL)stringIsVerifyCodeWithLength:(int)length withVerify:(NSString *)verify;
 
 /*
  验证邮箱
  */
 
-- (BOOL)stringIsEmailAddress;
++ (BOOL)stringIsEmailAddress:(NSString *)emailStr;
 
 
 /*
  身份证验证
  */
-- (BOOL)stringAccurateVerifyIDCardNumber;
++ (BOOL)stringAccurateVerifyIDCardNumber:(NSString *)idCarNum;
 
 /*
  手机号验证
  */
 
-- (BOOL)stringIsMobileNumber;
++ (BOOL)stringIsMobileNumber:(NSString *)phoneNum;
 
 /*
  银行号验证
  */
-- (BOOL)stringCheckBankCardNo;
++ (BOOL)stringCheckBankCardNo:(NSString *)bankCardNum;
 
 /*
  车牌
  */
 
-- (BOOL)stringIsCarNum;
++ (BOOL)stringIsCarNumWith:(NSString *)carNum;
 
 /*
  md5加密
  */
 
-- (NSString *) md5;
++ (NSString *) md5WithStr:(NSString *)str;
 @end
 
 NS_ASSUME_NONNULL_END
