@@ -166,6 +166,9 @@
     }else{
         result = nextResponder;
     }
+    if ([result isKindOfClass:[UINavigationController class]]) {
+        result = result.childViewControllers.lastObject;
+    }
     return result;
 }
 
