@@ -16,18 +16,18 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "XYBCategary"
-  s.version      = "2.1.3"
-  s.summary      = "常用的扩展类."
-
+  s.version      = "2.1.4"
+  s.summary      = "谢亚波categary"
+  s.static_framework = true
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-    s.description  = <<-DESC
+  s.description  = <<-DESC
 谢亚波总结的oc常用扩展类
                    DESC
- s.ios.deployment_target = '8.0'
+   s.ios.deployment_target = '8.0'
   s.homepage     = "https://github.com/xieyabo/XYBCategary"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
@@ -53,10 +53,10 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = {"谢亚波" => "1047794348@qq.com" }
-  # Or just: s.author    = ""
-  # s.authors            = { "" => "" }
-  # s.social_media_url   = "http://twitter.com/"
+  s.author             = { "谢亚波" => "1047794348@qq.com" }
+  # Or just: s.author    = "谢亚波"
+  # s.authors            = { "谢亚波" => "1047794348@qq.com" }
+  # s.social_media_url   = "http://twitter.com/谢亚波"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  s.platform     = :ios, "8.0"
+   s.platform     = :ios, "8.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -80,8 +80,8 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
+  
   s.source       = { :git => "https://github.com/xieyabo/XYBCategary.git", :tag => "#{s.version}" }
-
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -91,10 +91,10 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "*"
+  s.source_files  = "XYBCategary/*{h,m}"
   #s.exclude_files = "Classes/Exclude"
 
-  #s.public_header_files = "XYBCategaryHeader.h"
+  #s.public_header_files = "XYBCategary/XYBCategaryHeader.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -118,8 +118,7 @@ Pod::Spec.new do |s|
   #
 
   # s.framework  = "SomeFramework"
-  s.frameworks = "Foundation","UIKit"
-s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/CommonCrypto" }
+  # s.frameworks = "SomeFramework", "AnotherFramework"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
