@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "XYBCategary"
-  s.version      = "2.1.4"
+  s.version      = "2.1.5"
   s.summary      = "谢亚波categary"
   s.static_framework = true
   # This description is used to generate tags and improve search results.

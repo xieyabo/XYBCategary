@@ -152,9 +152,6 @@
         result = nav.childViewControllers.lastObject;
     }else if([nextResponder isKindOfClass:[UIWindow class]]){
         UIWindow *window = (UIWindow *)nextResponder;
-        result = window.rootViewController;
-    }else if([nextResponder isKindOfClass:[UIWindow class]]){
-        UIWindow *window = (UIWindow *)nextResponder;
         if ([window.rootViewController isKindOfClass:[UITabBarController class]]) {
             UITabBarController * tabbar = (UITabBarController *)window.rootViewController;
             UINavigationController * nav = (UINavigationController *)tabbar.viewControllers[tabbar.selectedIndex];
